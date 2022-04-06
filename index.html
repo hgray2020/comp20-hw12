@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sick Website!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            background-color: #002b3a;
+            color: #ccc;
+            margin: 2%
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+$server = "https://us116.siteground.us/phpmyadmin/index.php?route=/";// your server
+$userid = "u9tluqn8loftu"; // your user id
+$pw = "gshsjkmcea9k"; // your pw
+$db= "dbkzbj90eo4smd"; // your database
+
+// Create connection
+$conn = new mysqli($server, $userid, $pw );
+
+// Check connection
+if ($conn->connect_error) {
+ die("Connection failed!: " . $conn->connect_error);
+}
+echo "Connected successfully<br>";
+
+//select the database
+$conn->select_db($db);
+
+//run a query
+$sql = "SELECT * FROM food";
+$result = $conn->query($sql);
+
+//get results
+if ($result->num_rows > 0)
+{
+  while($row = $result->fetch_assoc())
+ {
+  echo $row["name"]. " " . $row["price"]. "<br>";
+ }
+}
+else
+ echo "no results";
+
+//close the connection
+$conn->close();
+?>
+    <h1>Welcome!</h1>
+    <p>My name is Henry!!!!!!!!!!!!!!!!!!!, here are some facts about me</p>
+    <ul>
+        <li><b>My major:</b> Computer Science</li>
+        <li><b>My IP:</b> 130.64.35.18</li>
+        <li><b>Where I grew up:</b> San Diego, CA</li>
+        <li><b>Something no one would expect about me:</b> I'm colorblind</li>
+    </ul>
+    <br>
+    <img src="download.jfif" alt="Picture of Glacier National Park" />
+
+</body>
+
+</html>
